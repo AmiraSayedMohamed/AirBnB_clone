@@ -189,7 +189,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             # If no class is specified , display all instantiated objects
             objects = storage.all()
-            print([str(obj) for obj in objective.values()])
+            print([str(obj) for obj in objects.values()])
             return
 
         try:
@@ -201,8 +201,8 @@ class HBNBCommand(cmd.Cmd):
                 raise NameError("** class doesn't exist **")
 
             # Display string representaion of instances of the specified class
-            objects = storage.all(eval(class_name))
-            print([str(obj) for obj in objects.values()])
+            objects = storage.all()
+            print([str(obj) for obj in objects.values() if obj.to_dict()["__class__"] == class_name])
 
         except NameError as e:
             print(e)
