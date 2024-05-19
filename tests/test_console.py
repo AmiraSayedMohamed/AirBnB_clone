@@ -696,6 +696,7 @@ class TestHBNBCommand_all(unittest.TestCase):
             pass
         FileStorage.__objects = {}
 
+
 class TestHBNBCommand_destroy(unittest.TestCase):
     def test_destroy_objects_dot_notation(self):
         with patch("sys.stdout", new=StringIO()) as output:
