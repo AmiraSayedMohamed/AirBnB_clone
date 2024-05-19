@@ -221,10 +221,9 @@ class HBNBCommand(cmd.Cmd):
             # Validate class name
             if len(args) < 1:
                 raise SyntaxError("** class name missing **")
-            
             class_name = args[0]
 
-            if class_name not in self.__classes:
+            if class_name not in HBNBCommand.__classes_:
                 raise NameError("**class doesn't exist **")
             # Validate instance ID
             if len(args) < 2:
