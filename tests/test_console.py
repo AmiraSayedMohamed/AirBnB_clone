@@ -175,6 +175,7 @@ class TestHBNBCommand_help(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("help quit"))
             self.assertEqual(h, output.getvalue().strip())
 
+
 class TestHBNBCommand_create(unittest.TestCase):
     @classmethod
     def setUp(self):
@@ -254,6 +255,7 @@ class TestHBNBCommand_create(unittest.TestCase):
         except IOError:
             pass
 
+
 class TestHBNBCommand_counting(unittest.TestCase):
     def test_count_object(self):
         with patch("sys.stdout", new=StringIO()) as output:
@@ -315,6 +317,7 @@ class TestHBNBCommand_counting(unittest.TestCase):
         except IOError:
             pass
         FileStorage._FileStorage__objects = {}
+
 
 class TestHBNBCommand_Update(unittest.TestCase):
 
@@ -529,7 +532,6 @@ class TestHBNBCommand_Update(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("update Review"))
             self.assertEqual(correct, output.getvalue().strip())
 
-
     def test_updateInvalidClass(self):
         correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
@@ -566,6 +568,7 @@ class TestHBNBCommand_Update(unittest.TestCase):
         except IOError:
             pass
         FileStorage.__objects = {}
+
 
 class TestHBNBCommand_all(unittest.TestCase):
 
@@ -674,7 +677,6 @@ class TestHBNBCommand_all(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("MyModel.all()"))
             self.assertEqual(correct, output.getvalue().strip())
 
-
     @classmethod
     def tearDown(self):
         try:
@@ -752,7 +754,6 @@ class TestHBNBCommand_destroy(unittest.TestCase):
             command = "Review.destory({})".format(testID)
             self.assertFalse(HBNBCommand().onecmd(command))
             self.assertNotIn(obj, storage.all())
-
 
     def test_destroy_objects_space_notation(self):
         with patch("sys.stdout", new=StringIO()) as output:
@@ -909,6 +910,7 @@ class TestHBNBCommand_destroy(unittest.TestCase):
     @classmethod
     def setUp(self):
         FileStorage.__objects = {}
+
 
 class TestHBNBCommand_show(unittest.TestCase):
 
