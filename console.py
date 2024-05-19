@@ -265,7 +265,7 @@ class HBNBCommand(cmd.Cmd):
             # Update the attribute of the instance
             setattr(objects[object_key], attribute_name, attribute_value)
             storage.save()
-        
+
         except (SyntaxError, NameError, IndexError,
                 KeyError, AttributeError, ValueError) as e:
             print(e)

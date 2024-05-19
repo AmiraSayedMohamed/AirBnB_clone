@@ -103,7 +103,7 @@ class TestHBNBCommand_prompt(unittest.TestCase):
 
 class TestHBNBCommand_exit(unittest.TestCase):
 
-    """ It's a unittests for testing exiting 
+    """ It's a unittests for testing exiting
     form the HBNB command interpreter"""
     def test_EOF_exits(self):
         with patch("sys.stdout", new=StringIO()) as output:
@@ -174,6 +174,7 @@ class TestHBNBCommand_help(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help quit"))
             self.assertEqual(h, output.getvalue().strip())
+
 class TestHBNBCommand_create(unittest.TestCase):
     @classmethod
     def setUp(self):
@@ -230,7 +231,7 @@ class TestHBNBCommand_create(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("BaseModel.create()"))
             self.assertEqual(correct, output.getvalue().strip())
 
-     def test_create_invalid_class(self):
+    def test_create_invalid_class(self):
         correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create MyModel"))
@@ -296,7 +297,7 @@ class TestHBNBCommand_counting(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
             """self.assertEqual("0", output.getvalue().strip())"""
 
-     @classmethod
+    @classmethod
     def tearDown(self):
         try:
             os.remove("file.json")
@@ -835,8 +836,8 @@ class TestHBNBCommand_destroy(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("Review.destroy(1)"))
             self.assertEqual(correct, output.getvalue().strip())
 
-     def test_destroy_id_missing_dot_notation(self):
-         correct = "** instance id missing **"
+    def test_destroy_id_missing_dot_notation(self):
+        correct = "** instance id missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.destroy()"))
             self.assertEqual(correct, output.getvalue().strip())
@@ -883,8 +884,8 @@ class TestHBNBCommand_destroy(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("destroy Review"))
             self.assertEqual(correct, output.getvalue().strip())
 
-     def test_destroy_invalid_class(self):
-         correct = "** class doesn't exist **"
+    def test_destroy_invalid_class(self):
+        correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("destroy MyModel"))
             self.assertEqual(correct, output.getvalue().strip())
@@ -892,8 +893,8 @@ class TestHBNBCommand_destroy(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("MyModel.destroy()"))
             self.assertEqual(correct, output.getvalue().strip())
 
-     def test_destroy_missing_class(self):
-         correct = "** class name missing **"
+    def test_destroy_missing_class(self):
+        correct = "** class name missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("destroy"))
             self.assertEqual(correct, output.getvalue().strip())
