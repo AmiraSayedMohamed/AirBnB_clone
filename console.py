@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """ Catchs the command if nothing else matches,
         Default behavior for cmd module when input in invalid"""
-        self._precmd(line)
+        self.precmd(line)
 
     def do_quit(self, line):
         """ Command to Exit form the programm """
@@ -71,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
              if len(components) == 1:
                  kwargs_string = ""
              else:
-                 kwargs_string = compoents[1]
+                 kwargs_string = components[1]
 
              try:
                  # Retriev the class from the global namespace
@@ -157,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = parts[0]
-        if class_name not in self.__classes:
+        if class_name not in HBNBCommand.__classes_:
             print("** class doesn't exist **")
             return
 
@@ -167,7 +167,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         instance_id = parts[1]
-        object_key = f"{class_name}.{instanct_id}"
+        object_key = f"{class_name}.{instance_id}"
 
         # Retrieve all objects from storage
         objects = storage.all()
@@ -181,7 +181,7 @@ class HBNBCommand(cmd.Cmd):
 
         """ Catchs the command if nothing else matches, 
         Default behavior for cmd module when input in invalid"""
-        self._precmd(line)
+        self.precmd(line)
     def do_all(self, line):
         """ Display string representaion of all instances of a given class"""
 
