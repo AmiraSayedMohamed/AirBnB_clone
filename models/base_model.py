@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 
-""" This script is the base model ,Parent class to all classes in the AirBnb clone project """
+""" This script is the base model ,
+Parent class to all classes in the AirBnb clone project """
 
 import uuid
 from datetime import datetime
 import models
+
 
 class BaseModel:
     """
@@ -48,7 +50,8 @@ class BaseModel:
         Returns official string representaion, class name, id, and dictionary
         """
 
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            type(self).__name__, self.id, self.__dict__)
 
     def save(self):
         """
@@ -69,7 +72,8 @@ class BaseModel:
 
     def to_dict(self):
         """
-        Function returns a dictionary containig all keys/ values with string format of times
+        Function returns a dictionary containig
+        all keys/ values with string format of times
         """
         my_dictionary = self.__dict__.copy()
         my_dictionary["__class__"] = type(self).__name__

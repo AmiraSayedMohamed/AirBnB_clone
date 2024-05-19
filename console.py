@@ -266,7 +266,8 @@ class HBNBCommand(cmd.Cmd):
             setattr(objects[object_key], attribute_name, attribute_value)
             storage.save()
         
-        except (SyntaxError, NameError, IndexError, KeyError, AttributeError, ValueError) as e:
+        except (SyntaxError, NameError, IndexError,
+                KeyError, AttributeError, ValueError) as e:
             print(e)
 
 

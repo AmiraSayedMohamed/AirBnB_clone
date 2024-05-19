@@ -6,6 +6,7 @@ A subclass of BaseModel class
 
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """
     A class for managing place objects, subclass of BaseModel

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ This a module for TESTHBHBCommand classes """
 
-import os 
+import os
 import re
 from console import HBNBCommand
 from models.engine.file_storage import FileStorage
@@ -29,9 +29,10 @@ Unittest classes:
     TestHBNBCommand_update
 """
 
+
 class TestHBNBCommand_prompt(unittest.TestCase):
     """ it's a unittest for testing prompting of HBNB command interpreter"""
-     attribute_values = {
+    attribute_values = {
         str: "foobar108",
         int: 1008,
         float: 1.08
@@ -99,9 +100,11 @@ class TestHBNBCommand_prompt(unittest.TestCase):
         errors += style.check_files(file).total_errors
         self.assertEqual(errors, 0, 'Need to fix Pep8')
 
+
 class TestHBNBCommand_exit(unittest.TestCase):
 
-""" It's a unittests for testing exiting form the HBNB command interpreter"""
+    """ It's a unittests for testing exiting 
+    form the HBNB command interpreter"""
     def test_EOF_exits(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("EOF"))
@@ -109,6 +112,7 @@ class TestHBNBCommand_exit(unittest.TestCase):
     def test_quit_exits(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("quit"))
+
 
 class TestHBNBCommand_help(unittest.TestCase):
 

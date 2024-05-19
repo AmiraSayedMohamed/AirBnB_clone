@@ -4,6 +4,7 @@
 
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """ THis is a class for managing user objects subclass of The baseModel"""
     email = ""

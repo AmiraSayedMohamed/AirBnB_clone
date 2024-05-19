@@ -3,6 +3,7 @@
 
 from models.base_model import BaseModel
 
+
 class State(BaseModel):
     """ This a Class for manging state objects, Subclass of BaseModel
     Public class attribute:

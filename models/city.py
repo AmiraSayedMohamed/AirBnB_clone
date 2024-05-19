@@ -2,6 +2,7 @@
 """ This a module creates a City class, subclass of BaseModel """
 from models.base_model import BaseModel
 
+
 class City(BaseModel):
     """
     Class for managing city objects, subclass of BaseModel
@@ -12,4 +13,3 @@ class City(BaseModel):
 
     state_id = ""
     name = ""
-
