@@ -182,6 +182,81 @@ class HBNBCommand(cmd.Cmd):
         """ Catchs the command if nothing else matches, 
         Default behavior for cmd module when input in invalid"""
         self._precmd(line)
+    def do_all(self, line):
+        """ Display string representaion of all instances of a given class"""
+
+        # Check if the input line is empty
+        if not line:
+            # If no class is specified , display all instantiated objects
+            objects = storage.all()
+            print([str(obj) for obj in objective.values()])
+            return
+
+        try:
+            args = line.split(" ")
+            class_name = args[0]
+
+
+            if class_name not in self.__classes_:
+                raise NameError("** class doesn't exist **")
+
+            # Display string representaion of instances of the specified class
+            objects = storage.all(eval(class_name))
+            print([str(obj) for obj in objects.values()])
+
+        except NameError as e:
+            print(e)
+
+    def do_update(self, line):
+        """ Updattes an instance by adding or updatint attribute """
+
+        # check if the input line is empty
+        if not line:
+            print("** class name missing **")
+            return
+        try: 
+            # Split the input into parts
+            args = line.split(" ")
+
+            # Validate class name
+            if len(args) < 1:
+                raise SyntaxError("** class name missing **")
+            
+            class_name = args[0]
+
+            if class_name not int self.__classes:
+                raise NameError("**class doesn't exist **")
+            # Validate instance ID
+            if len(args) < 2:
+                raise IndexError("** instance is missing **")
+            
+            instance_id = args[1]
+            object_key = f"{class_name}.{instance_id}"
+
+            objects = storage.all()
+
+            # Check if the instance exists 
+            if object_key not in objects:
+                raise KeyError("** no instance found **")
+
+            # Validate attribute name 
+            if len(args) < 3:
+                raise AttributeError("** attribute name missing **")
+            
+            attribute_name = args[2]
+
+            #Validate attribute value
+            if len(args) < 4:
+                raise ValueError("** value missing **")
+
+            attribute_value = args[3]
+
+            # Update the attribute of the instance 
+            setattr(objects[object_key], attribute_name, attribute_value)
+            storage.save()
+        
+        except (SyntaxError, NameError, IndexError, KeyError, AttributeError, ValueError) as e:
+            print(e)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
