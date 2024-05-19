@@ -4,7 +4,9 @@
 A subclass of BaseModel class
 """
 
-class place(BaseModel):
+from models.base_model import BaseModel
+
+class Place(BaseModel):
     """
     A class for managing place objects, subclass of BaseModel
     Public class attributes:
