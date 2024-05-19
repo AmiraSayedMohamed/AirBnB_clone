@@ -17,7 +17,7 @@ from models.review import Review
 import re
 import json
 from datetime import datetime
-import models
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
 
@@ -40,8 +40,8 @@ class HBNBCommand(cmd.Cmd):
         "Review"
     }
     def default(self, line):
-    """ Catchs the command if nothing else matches,
-    Default behavior for cmd module when input in invalid"""
+        """ Catchs the command if nothing else matches,
+        Default behavior for cmd module when input in invalid"""
         self._precmd(line)
 
     def do_quit(self, line):
@@ -59,10 +59,10 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """" Create < class > a new instances of a class < key 1>= < value 2> with given keys/values and prints it's id"""
         # Check if the input line is empty
-         if not line:
+        if not line:
              raise SyntaxError()
 
-         else:
+        else:
              # Split the input line into the class name and the rest of the aruments
              components = line.split(" ", 1)
              class_name = components[0]
@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
                  if cls is None:
                      raise NameError()  # Rais name error if the class does not exist
                  kwargs = {}
-                 if kwargs_String:
+                 if kwargs_string:
                      # Spint the key - value pairs
                      pairs = kwargs_string.split(" ")
                      for pair in pairs:
@@ -224,7 +224,7 @@ class HBNBCommand(cmd.Cmd):
             
             class_name = args[0]
 
-            if class_name not int self.__classes:
+            if class_name not in self.__classes:
                 raise NameError("**class doesn't exist **")
             # Validate instance ID
             if len(args) < 2:
