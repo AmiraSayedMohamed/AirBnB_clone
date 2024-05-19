@@ -40,16 +40,11 @@ class HBNBCommand(cmd.Cmd):
         "Review"
     }
     def default(self, line):
-<<<<<<< HEAD
-        """ Catchs the command if nothing else matches,
-=======
-        """ Catchs the command if nothing else matches, 
->>>>>>> f916170108fc1be6d2b1016cc24bc5b86abfb01e
-        Default behavior for cmd module when input in invalid"""
+    """ Catchs the command if nothing else matches,
+    Default behavior for cmd module when input in invalid"""
         self._precmd(line)
 
     def do_quit(self, line):
-<<<<<<< HEAD
         """ Command to Exit form the programm """
         sys.exit(0)
     
@@ -184,7 +179,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
-=======
         """Quit command to exit the program
         """
 
@@ -199,6 +193,5 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         return False
 
->>>>>>> f916170108fc1be6d2b1016cc24bc5b86abfb01e
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
