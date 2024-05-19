@@ -111,13 +111,14 @@ class HBNBCommand(cmd.Cmd):
                 print("** class name missing **")
             except NameError:
                 # Print error if class doesn't exist
-                print("** class doesn't exist **") 
+                print("** class doesn't exist **")
             except Exception as e:
                 # Print any other errors that occur
                 print(f"** error: {e} **")
 
     def do_show(self, line):
-        """ Prints the string representaion of an instance with given class name and id """
+        """ Prints the string representaion of an instance
+        with given class name and id """
         if not line:
             print("** class name missing **")
             return
@@ -158,7 +159,7 @@ class HBNBCommand(cmd.Cmd):
         # Split the input line into parts
         parts = line.split()
 
-        # Validate the class name 
+        # Validate the class name
         if len(parts) < 1:
             print("** class name missing **")
             return
@@ -189,6 +190,7 @@ class HBNBCommand(cmd.Cmd):
         """ Catchs the command if nothing else matches,
         Default behavior for cmd module when input in invalid"""
         self.precmd(line)
+
     def do_all(self, line):
         """ Display string representaion of all instances of a given class"""
 
@@ -203,13 +205,13 @@ class HBNBCommand(cmd.Cmd):
             args = line.split(" ")
             class_name = args[0]
 
-
             if class_name not in self.__classes_:
                 raise NameError("** class doesn't exist **")
 
             # Display string representaion of instances of the specified class
             objects = storage.all()
-            print([str(obj) for obj in objects.values() if obj.to_dict()["__class__"] == class_name])
+            print([str(obj) for obj in objects.values()
+                   if obj.to_dict()["__class__"] == class_name])
 
         except NameError as e:
             print(e)
@@ -266,6 +268,7 @@ class HBNBCommand(cmd.Cmd):
         
         except (SyntaxError, NameError, IndexError, KeyError, AttributeError, ValueError) as e:
             print(e)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
