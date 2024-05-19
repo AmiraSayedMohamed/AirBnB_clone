@@ -21,6 +21,7 @@ from models import storage
 
 class HBNBCommand(cmd.Cmd):
 
+
     """
     Class for the command interpreter
     Defines the HolbrtonBNB command interpreter
@@ -39,6 +40,7 @@ class HBNBCommand(cmd.Cmd):
         "Amenity",
         "Review"
     }
+
     def default(self, line):
         """ Catchs the command if nothing else matches,
         Default behavior for cmd module when input in invalid"""
@@ -47,66 +49,68 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """ Command to Exit form the programm """
         sys.exit(0)
-    
+
     def do_EOF(self, line):
         """ Exit form the program(console) """
         sys.exit(0)
-    
+
     def emptyline(self):
         """ Overwritint the empty lines,  Ignore empty spaces """
         return False
 
     def do_create(self, line):
-        """" Create < class > a new instances of a class < key 1>= < value 2> with given keys/values and prints it's id"""
+        """" Create < class > a new instances of a class < key 1>= < value 2> 
+        with given keys/values and prints it's id"""
         # Check if the input line is empty
         if not line:
             print("** class name missing **")
             return
 
         else:
-             # Split the input line into the class name and the rest of the aruments
-             components = line.split(" ", 1)
-             class_name = components[0]
-             
-             #check if there are key-value pairs provided
-             if len(components) == 1:
-                 kwargs_string = ""
-             else:
-                 kwargs_string = components[1]
+            # Split the input line into the class name and the rest of the aruments
+            components = line.split(" ", 1)
+            class_name = components[0]
+            
+            #check if there are key-value pairs provided
+            if len(components) == 1:
+                kwargs_string = ""
+            else:
+                kwargs_string = components[1]
 
-             try:
-                 # Retriev the class from the global namespace
-                 cls = globals().get(class_name)
-                 if cls is None:
-                     raise NameError()  # Rais name error if the class does not exist
-                 kwargs = {}
-                 if kwargs_string:
-                     # Spint the key - value pairs
-                     pairs = kwargs_string.split(" ")
-                     for pair in pairs:
-                         key, value = pair.split("=", 1)
-                         # Handle string values enclosed in double quotes
-                         if value.startswith('"') and value.endswith('"'):
-                             value = value[1:-1].replace("_", " ")
-                         else:
-                             # Try to evaluate the value as a Python expressioin
-                             try:
-                                 value = eval(value)
-                             except Exception:
-                                 continue
-                         kwargs[key] = value
-                 
-                 # Crete an instance of the class with the provided key-vlaue pairs
-                 obj = cls(**kwargs)
-                 storage.new(obj)  # Add the objects to storage
-                 obj.save() # Save the objects
-                 print(obj.id)  # Print the ID of the newly created object
+            try:
+            # Retriev the class from the global namespace
+                cls = globals().get(class_name)
+                if cls is None:
+                    # Rais name error if the class does not exist
+                    raise NameError()
+                kwargs = {}
+                if kwargs_string:
+                    # Spint the key - value pairs
+                    pairs = kwargs_string.split(" ")
+                    for pair in pairs:
+                        key, value = pair.split("=", 1)
+                        # Handle string values enclosed in double quotes
+                        if value.startswith('"') and value.endswith('"'):
+                            value = value[1:-1].replace("_", " ")
+                        else:
+                            # Try to evaluate the value as a Python expressioin
+                            try:
+                                value = eval(value)
+                            except Exception:
+                                continue
+                        kwargs[key] = value
+                
+                # Crete an instance of the class with the provided key-vlaue pairs
+                obj = cls(**kwargs)
+                storage.new(obj)  # Add the objects to storage
+                obj.save() # Save the objects
+                print(obj.id)  # Print the ID of the newly created object
 
-             except SyntaxError:
-                 print("** class name missing **") # Print error if class name is missing
-             except NameError:
-                 print("** class doesn't exist **") # Print error if class doesn't exist 
-             except Exception as e:
+            except SyntaxError:
+                print("** class name missing **") # Print error if class name is missing
+            except NameError:
+                print("** class doesn't exist **") # Print error if class doesn't exist 
+            except Exception as e:
                 print(f"** error: {e} **") # Print any other errors that occur
 
     def do_show(self, line):
