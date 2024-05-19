@@ -223,7 +223,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
             return
-        try: 
+        try:
             # Split the input into parts
             args = line.split(" ")
 
@@ -237,37 +237,37 @@ class HBNBCommand(cmd.Cmd):
             # Validate instance ID
             if len(args) < 2:
                 raise IndexError("** instance is missing **")
-            
+
             instance_id = args[1]
             object_key = f"{class_name}.{instance_id}"
 
             objects = storage.all()
 
-            # Check if the instance exists 
+            # Check if the instance exists
             if object_key not in objects:
                 raise KeyError("** no instance found **")
 
-            # Validate attribute name 
+            # Validate attribute name
             if len(args) < 3:
                 raise AttributeError("** attribute name missing **")
-            
-            attribute_name = args[2]
-            
-            if attribute_name in ['id', 'created_at', 'updated_at']:
-                raise AttributeError("** id, created_at, updated_at can not be updated  **")
 
-            #Validate attribute value
+            attribute_name = args[2]
+
+            if attribute_name in ['id', 'created_at', 'updated_at']:
+                raise AttributeError("Attribute update not allowed")
+
+            # Validate attribute value
             if len(args) < 4:
                 raise ValueError("** value missing **")
 
             attribute_value = args[3]
 
-            # Update the attribute of the instance 
+            # Update the attribute of the instance
             setattr(objects[object_key], attribute_name, attribute_value)
             storage.save()
-        
-        except (SyntaxError, NameError, IndexError, KeyError, AttributeError, ValueError) as e:
-            print(e)
+
+        except Exception:
+            print(Exception)
 
 
 if __name__ == '__main__':
