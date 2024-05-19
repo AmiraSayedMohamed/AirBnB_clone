@@ -4,10 +4,9 @@ Module for the entry point of the command interpreter
 Defines the HBnB console
 """
 import cmd
+import sys
 from models.base_model import BaseModel
-from models import storage
 from shlex import split
-from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -29,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
     prompt (str): The command prompt
     """
 
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
 
     __classes_ = {
         "BaseModel",
@@ -41,11 +40,16 @@ class HBNBCommand(cmd.Cmd):
         "Review"
     }
     def default(self, line):
+<<<<<<< HEAD
         """ Catchs the command if nothing else matches,
+=======
+        """ Catchs the command if nothing else matches, 
+>>>>>>> f916170108fc1be6d2b1016cc24bc5b86abfb01e
         Default behavior for cmd module when input in invalid"""
         self._precmd(line)
 
     def do_quit(self, line):
+<<<<<<< HEAD
         """ Command to Exit form the programm """
         sys.exit(0)
     
@@ -180,5 +184,21 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
+=======
+        """Quit command to exit the program
+        """
+
+        sys.exit(0)
+
+    def do_EOF(self, line):
+        """Quit command to exit the program
+        """
+
+        sys.exit(0)
+    
+    def emptyline(self):
+        return False
+
+>>>>>>> f916170108fc1be6d2b1016cc24bc5b86abfb01e
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

@@ -812,7 +812,6 @@ Click here to tweet!
 
 Repo:
 
-GitHub repository: AirBnB_clone
-File: tests/test_console.py
-  
-
+```
+$ python3 unittest -m tests/test_console.py
+```
