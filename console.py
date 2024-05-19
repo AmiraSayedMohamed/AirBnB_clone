@@ -244,6 +244,9 @@ class HBNBCommand(cmd.Cmd):
                 raise AttributeError("** attribute name missing **")
             
             attribute_name = args[2]
+            
+            if attribute_name in ['id', 'created_at', 'updated_at']:
+                raise AttributeError("** id, created_at, updated_at can not be updated  **")
 
             #Validate attribute value
             if len(args) < 4:
