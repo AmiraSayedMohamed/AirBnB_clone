@@ -91,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
                              # Try to evaluate the value as a Python expressioin
                              try:
                                  value = eval(value)
-                             except Exeption:
+                             except Exception:
                                  continue
                          kwargs[key] = value
                  
