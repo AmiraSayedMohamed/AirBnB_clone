@@ -60,7 +60,8 @@ class HBNBCommand(cmd.Cmd):
         """" Create < class > a new instances of a class < key 1>= < value 2> with given keys/values and prints it's id"""
         # Check if the input line is empty
         if not line:
-             raise SyntaxError()
+            print("** class name missing **")
+            return
 
         else:
              # Split the input line into the class name and the rest of the aruments
