@@ -19,8 +19,8 @@ import json
 from datetime import datetime
 from models import storage
 
-class HBNBCommand(cmd.Cmd):
 
+class HBNBCommand(cmd.Cmd):
 
     """
     Class for the command interpreter
@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_create(self, line):
-        """" Create < class > a new instances of a class < key 1>= < value 2> 
+        """" Create < class > a new instances of a class < key 1>= < value 2>
         with given keys/values and prints it's id"""
         # Check if the input line is empty
         if not line:
@@ -67,18 +67,18 @@ class HBNBCommand(cmd.Cmd):
             return
 
         else:
-            # Split the input line into the class name and the rest of the aruments
+            # Split input ln into the class name & rest of arguments
             components = line.split(" ", 1)
             class_name = components[0]
-            
-            #check if there are key-value pairs provided
+
+            # check if there are key-value pairs provided
             if len(components) == 1:
                 kwargs_string = ""
             else:
                 kwargs_string = components[1]
 
             try:
-            # Retriev the class from the global namespace
+                # Retriev the class from the global namespace
                 cls = globals().get(class_name)
                 if cls is None:
                     # Rais name error if the class does not exist
@@ -99,19 +99,22 @@ class HBNBCommand(cmd.Cmd):
                             except Exception:
                                 continue
                         kwargs[key] = value
-                
-                # Crete an instance of the class with the provided key-vlaue pairs
+
+                # Create an inst of class with the provided kv pairs
                 obj = cls(**kwargs)
                 storage.new(obj)  # Add the objects to storage
-                obj.save() # Save the objects
+                obj.save()  # Save the objects
                 print(obj.id)  # Print the ID of the newly created object
 
             except SyntaxError:
-                print("** class name missing **") # Print error if class name is missing
+                # Print error if class name is missing
+                print("** class name missing **")
             except NameError:
-                print("** class doesn't exist **") # Print error if class doesn't exist 
+                # Print error if class doesn't exist
+                print("** class doesn't exist **") 
             except Exception as e:
-                print(f"** error: {e} **") # Print any other errors that occur
+                # Print any other errors that occur
+                print(f"** error: {e} **")
 
     def do_show(self, line):
         """ Prints the string representaion of an instance with given class name and id """
@@ -124,13 +127,13 @@ class HBNBCommand(cmd.Cmd):
         if len(parts) < 1:
             print("** class name missing **")
             return
-        
+
         class_name = parts[0]
 
         if class_name not in self.__classes_:
             print("** class doesn't exist **")
             return
-         
+
         if len(parts) < 2:
             print("** instance id missing **")
             return
@@ -144,7 +147,6 @@ class HBNBCommand(cmd.Cmd):
         except KeyError:
             print("** no instance found **")
 
-    
     def do_destroy(self, line):
         """ Deleted an instance based on the class name and id """
 
@@ -177,14 +179,14 @@ class HBNBCommand(cmd.Cmd):
         # Retrieve all objects from storage
         objects = storage.all()
 
-        # Check if the objects exists and delete it 
+        # Check if the objects exists and delete it
         if object_key in objects:
             del objects[object_key]
             storage.save()
         else:
             print("** no instance found **")
 
-        """ Catchs the command if nothing else matches, 
+        """ Catchs the command if nothing else matches,
         Default behavior for cmd module when input in invalid"""
         self.precmd(line)
     def do_all(self, line):
