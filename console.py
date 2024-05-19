@@ -183,20 +183,5 @@ class HBNBCommand(cmd.Cmd):
         Default behavior for cmd module when input in invalid"""
         self._precmd(line)
 
-    def do_quit(self, line):
-    """Quit command to exit the program
-        """
-
-        sys.exit(0)
-
-    def do_EOF(self, line):
-        """Quit command to exit the program
-        """
-
-        sys.exit(0)
-    
-    def emptyline(self):
-        return False
-
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
