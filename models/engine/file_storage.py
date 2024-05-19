@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-""" 
-Module for FileStorage class 
+"""
+Module for FileStorage class
 AirBnB cone project
 """
 
@@ -26,7 +26,7 @@ class FileStorage:
         save: Convert Python objects into JSON strings
         reload: Convert JSON string into Python objects
     Class Attributes:
-    __file_path (str): Name of file to save Objects to 
+    __file_path (str): Name of file to save Objects to
     __objects (dict): Dictionary of instantiated objects
     class_dict (dict): Dictionry of all the classes
     """
@@ -35,6 +35,7 @@ class FileStorage:
     # classes_dict = {"BaseModel": BaseModel, "User": User, "Place": Place,
     #               "Amenity": Amenity, "City": City, "Review": Review,
     #               "State": State}
+
     def all(self):
         """ returns the dictionary __objects"""
         return FileStorage.__objects
@@ -58,13 +59,8 @@ class FileStorage:
 
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 obj_dict = json.load(f)
-                # print(obj_dict)
-
-                # x = input("pause")
-                # for k, v in obj_dict.items():
-                #     print (f"this is {k} and this is {v}")
-                obj_dict = {k: eval(v["__class__"])(**v)for k, v in obj_dict.items()}
-            # TODO: should this overwrite or insert?
+                obj_dict = {
+                    k: eval(v["__class__"])(**v)for k, v in obj_dict.items()}
             FileStorage.__objects = obj_dict
         except FileNotFoundError:
             pass
@@ -106,4 +102,3 @@ class FileStorage:
                          "text": str}
         }
         return attributes
-
