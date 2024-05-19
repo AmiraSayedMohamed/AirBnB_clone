@@ -7,12 +7,12 @@ import datetime
 import json
 import os
 from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
+# from models.user import User
+# from models.state import State
+# from models.city import City
+# from models.amenity import Amenity
+# from models.place import Place
+# from models.review import Review
 
 
 class FileStorage:
@@ -30,9 +30,9 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
-    classes_dict = {"BaseModel": BaseModel, "User": User, "Place": Place,
-                  "Amenity": Amenity, "City": City, "Review": Review,
-                  "State": State}
+    # classes_dict = {"BaseModel": BaseModel, "User": User, "Place": Place,
+    #               "Amenity": Amenity, "City": City, "Review": Review,
+    #               "State": State}
     def all(self):
         """ returns the dictionary __objects"""
         return FileStorage.__objects
@@ -56,8 +56,12 @@ class FileStorage:
 
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 obj_dict = json.load(f)
-                obj_dict = {k: self.classes()[v["__class__"]](**v)
-                        for k, v in obj_dict.items()}
+                # print(obj_dict)
+
+                # x = input("pause")
+                # for k, v in obj_dict.items():
+                #     print (f"this is {k} and this is {v}")
+                obj_dict = {k: eval(v["__class__"])(**v)for k, v in obj_dict.items()}
             # TODO: should this overwrite or insert?
             FileStorage.__objects = obj_dict
         except FileNotFoundError:
