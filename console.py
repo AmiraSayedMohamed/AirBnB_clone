@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
     prompt (str): The command prompt
     """
 
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
 
     __classes = {
         "BaseModel",
@@ -42,3 +42,5 @@ class HBNBCommand(cmd.Cmd):
         Default behavior for cmd module when input in invalid"""
         self._precmd(line)
 
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
